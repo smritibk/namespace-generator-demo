@@ -22,7 +22,7 @@ public class RegistrationService {
         this.namespaceGenerator=namespaceGenerator;
     }
 
-    @NamespaceContext({"auth"})
+    @NamespaceContext({"auth", "otp"})
     public void generateOtp(RegisterRequest request){
         StringBuilder otp=new StringBuilder();
 
