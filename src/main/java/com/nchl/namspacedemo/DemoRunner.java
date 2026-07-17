@@ -1,22 +1,27 @@
 package com.nchl.namspacedemo;
 
-import com.nchl.namespacegenerator.generator.NamespaceGenerator;
-import com.nchl.namspacedemo.auth.AuthService;
+import com.nchl.namspacedemo.auth.RegisterRequest;
+import com.nchl.namspacedemo.auth.RegistrationService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DemoRunner implements CommandLineRunner {
 
-    private final AuthService authService;
+    private final RegistrationService registrationService;
 
-    public DemoRunner(AuthService authService){
-        this.authService=authService;
+    public DemoRunner(RegistrationService registrationService){
+        this.registrationService=registrationService;
     }
+
 
     @Override
     public void run(String... args) throws Exception {
-//        System.out.println(generator.generate("otp", "101"));
-        authService.generateOtp(4, "smriti@gmail.com");
+        RegisterRequest request=new RegisterRequest(
+                "123-123-123",
+                "smriti@123"
+        );
+
+        registrationService.generateOtp(request);
     }
 }
