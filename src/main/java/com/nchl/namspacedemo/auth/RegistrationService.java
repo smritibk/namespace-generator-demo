@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+//@NamespaceResource({"auth", "otp"})
 public class RegistrationService {
 
     private static String DIGITS = "0123456789";
