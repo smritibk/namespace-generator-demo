@@ -1,8 +1,8 @@
 package com.nchl.namspacedemo;
 
-import com.nchl.namspacedemo.auth.Logout;
 import com.nchl.namspacedemo.auth.RegisterRequest;
 import com.nchl.namspacedemo.auth.RegistrationService;
+import com.nchl.namspacedemo.auth.VerificationService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -10,22 +10,25 @@ import org.springframework.stereotype.Component;
 public class DemoRunner implements CommandLineRunner {
 
     private final RegistrationService registrationService;
-    private final Logout logout;
+    private final VerificationService verificationService;
 
-    public DemoRunner(RegistrationService registrationService, Logout logout){
-        this.registrationService=registrationService;
-        this.logout=logout;
+    public DemoRunner(
+            RegistrationService registrationService,
+            VerificationService verificationService) {
+        this.registrationService = registrationService;
+        this.verificationService=verificationService;
     }
 
 
     @Override
     public void run(String... args) throws Exception {
-        RegisterRequest request=new RegisterRequest(
+        RegisterRequest request = new RegisterRequest(
                 "smriti@gmail.com",
                 "smriti@123"
         );
 
-//        logout.calculateMaxSize(request);
-        registrationService.generateOtp(request);
+        String otp = registrationService.generateOtp(request);
+        verificationService.verifyOtp(otp);
+
     }
 }
